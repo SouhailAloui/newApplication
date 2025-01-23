@@ -1,16 +1,16 @@
 import { Tabs } from 'expo-router'
 import React from 'react'
 
-export default function Tablayout() {
+export default function Agencylayout() {
   return (
   <Tabs>
     <Tabs.Screen name='[userId]' options={{
-        headerTitle:"client View",
-        tabBarLabel:'client view'
+        headerTitle:"agency View",
+        tabBarLabel:'agency view'
     }}/>
         <Tabs.Screen name='profile' options={{
-        headerTitle:"client profile",
-        tabBarLabel:'client profile'
+        headerTitle:"agency profile",
+        tabBarLabel:'agency profile'
     }}/>
   </Tabs>
   )

@@ -4,12 +4,12 @@ import { Link } from 'expo-router';
 export default function HomeScreen() {
   return (
     <ImageBackground source={require('@/assets/images/imagebackground.webp')} style={styles.background}>
-      <Link href="/(auth)/loginscreen" style={styles.link} >Login</Link>
+      <Link href="/loginscreen" style={styles.link} >Login</Link>
       <View style={styles.overlay}>
         <Text style={styles.text}>Hello World!</Text>
         
       </View>
-      <Link href="/(auth)/signUpScreen" style={styles.links} >Get your car</Link>
+      <Link href="/signUpScreen" style={styles.links} >Get your car</Link>
     </ImageBackground>
     
   );

@@ -37,11 +37,26 @@ export default function Login() {
   
         // Extract userId from token and navigate
         const decodedToken = jwtDecode(token);
-        const userId = decodedToken.userId;
- 
-  
+        const { userType, userId } = decodedToken;
+        console.log("Decoded Token:", decodedToken);
 
-        router.push(`/(tabs)/client/${userId}`);
+        // Store the role for further use
+        await SecureStore.setItemAsync('userRole', userType);
+
+        // Navigate based on the user's role
+        switch (userType) {
+          case 'Client':
+            router.replace(`/(tabs)/${userId}`);
+            break;
+          case 'Agency':
+            router.replace(`/(agency)/${userId}`);
+            break;
+          case 'admin':
+            router.replace(`/(tabs)/admin/dashboard`);
+            break;
+          default:
+            Alert.alert('Error', 'Invalid user role. Contact support.');
+        }
       } else {
         Alert.alert('Error', result.message || 'Invalid email or password');
       }

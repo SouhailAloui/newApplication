@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, Alert,Pressable } from 'react-native';
-import { useRouter } from 'expo-router';
+import { View, Text ,Button, TextInput, StyleSheet, Alert,Pressable } from 'react-native';
+import { Link,useRouter } from 'expo-router';
 
  
 
 
 
-export default function SecondScreen() {
+export default function signUpScreen() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -19,7 +19,7 @@ export default function SecondScreen() {
     try {
       // Prepare the data
       const data = { name:name, email:email, password:password};
-      console.log("Sending data to register:", data);
+
       // Make the API request
       const response = await fetch('http://10.0.2.2:8000/api/register', {
         method: 'POST',
@@ -38,7 +38,7 @@ export default function SecondScreen() {
         Alert.alert('Success', result.message);
         
         console.log("User ID:", userId);
-        router.push(`/(tabs)/client/${userId}`);
+        router.push(`/(tabs)/${userId}`);
         
       } else {
         Alert.alert('Error', result.message || 'Something went wrong');
@@ -79,6 +79,9 @@ export default function SecondScreen() {
                <Pressable style={styles.button} onPress={handleSignUp}>
         <Text style={styles.buttonText}>Sign Up</Text>
       </Pressable>
+      <Link href="/loginscreen" asChild>
+  <Button title="Login" />
+      </Link>
     </View>
   );
 }
@@ -114,3 +117,4 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
